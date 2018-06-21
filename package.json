@@ -6,6 +6,7 @@
     "start": "set HTTPS=true && NODE_PATH=. node core/server"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "chalk": "^2.4.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",

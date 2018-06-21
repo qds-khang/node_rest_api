@@ -21,10 +21,15 @@ require('core/services/database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json({
-  	message: 'Express APIs'
-  });
+	res.json({
+		message: 'Welcome to Express APIs'
+	});
 });
 app.use('/', router);
+
+// load routes of the modules
+var routes = require('core/routes');
+routes.init(app);
+
 
 module.exports = app;
