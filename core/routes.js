@@ -5,6 +5,7 @@ var fs = require('fs');
 
 var app = require('core/app');
 var log = require('core/services/log');
+var response = require('core/services/response');
 
 
 
@@ -22,6 +23,11 @@ module.exports.init = function(app) {
 	        var routes = load_module.routes;
 	        
 	        app.use('/api' + path, routes);
-	    }
+		}
+		
+		// catch 404 error
+		app.use(function (req, res) {
+			return response.notFound(res);
+		});
 	});
 };
