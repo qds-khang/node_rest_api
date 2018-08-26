@@ -4,6 +4,13 @@ var Strategy = require('passport-http-bearer').Strategy;
 var Jwt = require('jsonwebtoken');
 var env = require('core/services/env');
 var User = require('modules/user/model');
+var app = require('core/app');
+
+
+
+// Setup passport
+app.use(passport.initialize());
+
 
 
 passport.serializeUser(function (user, done) {

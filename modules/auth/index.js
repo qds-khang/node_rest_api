@@ -1,4 +1,5 @@
 var routes = require('./routes');
+require('./passport'); // load passport configurations
 
 
 

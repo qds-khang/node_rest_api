@@ -1,15 +1,6 @@
 var express = require('express');
-var passport = require('passport');
 var router = express.Router();
 var authController = require('./controllers');
-
-
-
-var app = require('core/app');
-// Setup passport
-app.use(passport.initialize());
-app.use(passport.session());
-require('./passport');
 
 
 
