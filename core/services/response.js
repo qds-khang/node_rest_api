@@ -37,5 +37,12 @@ module.exports = {
             error: 'Internal Server Error',
             message: 'This is an error on the server.'
         });
+    },
+
+    unauthorizedError: function(res) {
+        return res.status(401).json({
+            error: 'Unauthorized',
+            message: 'Invalid Token.'
+        });
     }
 };
