@@ -3,7 +3,7 @@ var Strategy = require('passport-http-bearer').Strategy;
 
 var Jwt = require('jsonwebtoken');
 var env = require('core/services/env');
-var User = require('./user/model');
+var User = require('modules/user/model');
 
 
 passport.serializeUser(function (user, done) {
@@ -18,7 +18,7 @@ passport.deserializeUser(function (id, done) {
 
 passport.use(new Strategy(
     function(token, done) {
-        Jwt.verify(token, Env.SITE_SECRET_KEY, function (err, decoded) {
+        Jwt.verify(token, env.SITE_SECRET_KEY, function (err, decoded) {
             if (err) return done(null, false); // response Unauthorized
 
             User.findById(decoded.user_id, function (err, user) {

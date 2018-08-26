@@ -5,8 +5,7 @@ var env = require('core/services/env');
 
 module.exports = {
     getAccessToken: function(user) {
-        var token = Jwt.sign(
-            {
+        var token = Jwt.sign({
                 user_id: user.id,
             },
             env.SITE_SECRET_KEY, {
@@ -18,8 +17,7 @@ module.exports = {
     },
 
     getRefreshToken: function(user) {
-        var token = Jwt.sign(
-            {
+        var token = Jwt.sign({
                 user_id: user.id
             },
             env.SITE_SECRET_KEY, {

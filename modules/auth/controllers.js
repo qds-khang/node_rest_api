@@ -1,5 +1,6 @@
 var Async = require('async');
 var Validator = require('validator');
+var passport = require('passport');
 var User = require('modules/user/model');
 var response = require('core/services/response');
 var log = require('core/services/log');
@@ -189,5 +190,36 @@ module.exports = {
 		} else {
 			return next();
 		}
+	},
+
+	// bearer authenticated (jwt)
+	bearerAuthenticated: function(req, res, next) {
+		passport.authenticate('bearer', {session: false}, function(err, user, info) {
+			if (err) {
+				return response.serverError(res);
+			}
+	
+			//authentication error
+			if (!user) {
+				return response.unauthorizedError(res);
+			}
+	
+			//success 
+			req.logIn(user, function(err) {
+				if (err) {
+					return response.serverError(res);
+				}
+
+			  	return next();
+			});
+	
+		})(req, res, next)
+	},
+
+	// profile
+	profile: function(req, res, next) {
+		var user = req.user;
+
+		return response.success(res, user);
 	},
 };
