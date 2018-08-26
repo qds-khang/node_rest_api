@@ -1,6 +1,8 @@
 var Async = require('async');
+var Validator = require('validator');
 var User = require('modules/user/model');
 var response = require('core/services/response');
+var log = require('core/services/log');
 var helpers = require('./helpers');
 
 
@@ -67,6 +69,38 @@ module.exports = {
 		});
 	},
 
+	// login validation
+	loginValidation: function(req, res, next) {
+		var email = req.body.email || '';
+		var password = req.body.password || '';
+		var messages = [];
+
+		// validate email
+		if (Validator.isEmpty(email)) {
+            messages.push('Email is required.');
+        } else if (!Validator.isEmail(email)) {
+            messages.push('Email invalid.');
+        }
+		
+		// validate password
+        if (Validator.isEmpty(password)) {
+            messages.push('Password is required.');
+		}
+		
+		// return reponse if there is error
+		if(messages.length > 0) {
+			var error = {
+				statusCode: 400,
+				data: messages
+			};
+
+			return response.errorHandle(res, error);
+		} else { 
+			// go to next middleware
+			return next();
+		}
+	},
+
 	// api register
 	register: function(req, res, next) {
 		var email = req.body.email;
@@ -78,6 +112,7 @@ module.exports = {
 			function(callback) {
 				User.findOne({ email: email }, function(error, user) {
 					if (error) {
+						log.error(error);
                         return callback(error);
                     }
 
@@ -102,6 +137,7 @@ module.exports = {
 
 				newUser.save(function(error, user) {
 					if (error) {
+						log.error(error);
                         return callback(error);
                     }
 
@@ -115,5 +151,43 @@ module.exports = {
 
 			return response.success(res, data);
 		});
-	}
+	},
+
+	// register validation
+	registerValidation: function(req, res, next) {
+		var email = req.body.email || '';
+		var password = req.body.password || '';
+		var name = req.body.name || '';
+		var messages = [];
+
+		// validate email
+		if (Validator.isEmpty(email)) {
+            messages.push('Email is required.');
+        } else if (!Validator.isEmail(email)) {
+            messages.push('Email invalid.');
+        }
+		
+		// validate password
+        if (Validator.isEmpty(password)) {
+            messages.push('Password is required.');
+		}
+
+		// validate name
+		if (Validator.isEmpty(name)) {
+			messages.push('Name is required.');
+		}
+		
+		// return reponse if there is error
+		console.log(messages);
+		if(messages.length > 0) {
+			var error = {
+				statusCode: 400,
+				data: messages
+			};
+
+			return response.errorHandle(res, error);
+		} else {
+			return next();
+		}
+	},
 };

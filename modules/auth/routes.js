@@ -5,10 +5,10 @@ var authController = require('./controllers');
 
 
 /* POST */
-router.post('/login', authController.login);
+router.post('/login', authController.loginValidation, authController.login);
 
 /* POST */
-router.post('/register', authController.register);
+router.post('/register', authController.registerValidation, authController.register);
 
 
 
