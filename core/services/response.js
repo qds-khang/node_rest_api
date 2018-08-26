@@ -1,7 +1,6 @@
 module.exports = {
     success: function(res, data) {
         return res.status(200).json({
-            error: null,
             message: 'Request is successful.',
             data: data
         });
