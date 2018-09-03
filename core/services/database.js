@@ -8,10 +8,18 @@ var env = require('core/services/env');
 
 
 // Setup database: MongoDB
-mongoose.connect(env.MONGO_URL, function (err) {
-	if (err) {
-		log.error('Mongo DB connection is failed. ' + err);
-	} else {
-		log.info('Mongo DB connection is succeeded.');
-	}
-});
+if(env.TRAVIS != true) {
+	db_connection(env.MONGO_URL);
+} else {
+	db_connection('mongodb://travis:test@localhost:27017/mydb_test');
+}
+
+function db_connection(db_url) {
+	mongoose.connect(db_url, function (err) {
+		if (err) {
+			log.error('Mongo DB connection is failed. ' + err);
+		} else {
+			log.info('Mongo DB connection is succeeded.');
+		}
+	});
+}

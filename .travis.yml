@@ -8,6 +8,8 @@ os:
   # - centos
   # - macosx
   # - windows
+env:
+  - TRAVIS=true
 services:
   - mongodb
 cache:
@@ -16,6 +18,8 @@ cache:
     - node_modules
 before_install:
   - yarn global add mocha istanbul
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 after_script:
   - yarn run coverage
 notifications:
