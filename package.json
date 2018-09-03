@@ -3,12 +3,15 @@
   "version": "1.00",
   "private": true,
   "scripts": {
-    "start": "set HTTPS=true && NODE_PATH=. node core/server"
+    "start": "set HTTPS=true && NODE_PATH=. node core/server",
+    "test": "NODE_PATH=. APP_ENV=test mocha 'modules/**/*.test.js'",
+    "coverage": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js'"
   },
   "dependencies": {
     "async": "^2.6.1",
     "bcrypt": "^2.0.1",
     "boom": "^7.2.0",
+    "chai": "^4.1.2",
     "chalk": "^2.4.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
