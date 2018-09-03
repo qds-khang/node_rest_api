@@ -1,3 +1,5 @@
+"use strict";
+
 var Async = require('async');
 var Validator = require('validator');
 var passport = require('passport');
@@ -193,6 +195,7 @@ module.exports = {
 	},
 
 	// bearer authenticated (jwt)
+	// customize passport response
 	bearerAuthenticated: function(req, res, next) {
 		passport.authenticate('bearer', {session: false}, function(err, user, info) {
 			if (err) {

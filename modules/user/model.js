@@ -1,3 +1,5 @@
+"use strict";
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -28,35 +30,6 @@ var UserSchema = new Schema({
     active: {
         type: Boolean,
         default: false
-    },
-    token: {
-        type: String,
-    },
-    social_auth: {
-        facebook: {
-            id: String,
-            name: String, // displayName
-            gender: String, // male | female
-            email: String,
-            avatar_url: String,
-            token: String
-        },
-        google: {
-            id: String,
-            name: String, // displayName
-            gender: String, // male | female
-            email: String,
-            avatar_url: String,
-            token: String
-        },
-        twitter: {
-            id: String,
-            name: String, // displayName
-            gender: String, // male | female
-            email: String,
-            avatar_url: String,
-            token: String
-        }
     }
 }, {
     // The {timestamps: true} option creates a createdAt and updatedAt field 
@@ -74,7 +47,7 @@ UserSchema.pre('save', function(next) {
 
             // Store hash in your password DB.
             user.password = (user.password == '') ? user.password : hash;
-            next();
+            return next();
         });
     } else {
         return next();

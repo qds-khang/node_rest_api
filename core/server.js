@@ -4,17 +4,10 @@
  * Module dependencies.
  */
 
-var dotenv = require('dotenv');
-var envConfig = dotenv.config();
+"use strict";
+
+require('core/services/dotenv');
 var log = require('core/services/log');
-
-if (envConfig.error) {
-    log.error('Read .env file fail. ' + envConfig.error);
-} else {
-    log.info('Read .env file success');
-}
-
-
 var app = require('core/app');
 var debug = require('debug')('restapi:server');
 var http = require('http');

@@ -1,3 +1,5 @@
+"use strict";
+
 var Jwt = require('jsonwebtoken');
 var env = require('core/services/env');
 

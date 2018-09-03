@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     success: function(res, data) {
         return res.status(200).json({
