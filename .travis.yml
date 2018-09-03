@@ -9,7 +9,7 @@ os:
   # - macosx
   # - windows
 env:
-  - TRAVIS=true
+  - MONGO_URL='mongodb://travis:test@localhost:27017/mydb_test'
 services:
   - mongodb
 cache:
