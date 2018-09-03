@@ -21,7 +21,7 @@ before_install:
 before_script:
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 after_script:
-  - yarn run coverage
+  - yarn run coveralls
 notifications:
   webhooks:
     urls:

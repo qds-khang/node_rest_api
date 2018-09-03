@@ -5,7 +5,8 @@
   "scripts": {
     "start": "set HTTPS=true && NODE_PATH=. node core/server",
     "test": "NODE_PATH=. APP_ENV=test mocha 'modules/**/*.test.js'",
-    "coverage": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js'"
+    "coverage": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js'",
+    "coveralls": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js' -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -24,5 +25,9 @@
     "passport": "^0.4.0",
     "passport-http-bearer": "^1.0.1",
     "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "mocha-lcov-reporter": "^1.3.0"
   }
 }
