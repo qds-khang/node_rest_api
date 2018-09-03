@@ -6,7 +6,7 @@
     "start": "set HTTPS=true && NODE_PATH=. node core/server",
     "test": "NODE_PATH=. APP_ENV=test mocha 'modules/**/*.test.js'",
     "coverage": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js'",
-    "coveralls": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js' -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js' -R mocha-lcov-reporter && cat lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "async": "^2.6.1",
