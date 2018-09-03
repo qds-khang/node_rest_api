@@ -8,6 +8,8 @@ os:
   # - centos
   # - macosx
   # - windows
+services:
+  - mongodb
 cache:
   yarn: true
   directories:
