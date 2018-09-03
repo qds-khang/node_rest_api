@@ -1,21 +1,19 @@
 language: node_js
 node_js:
-  - '6'
-  - '7'
   - '8'
   - '9'
   - '10'
 os:
   - linux
-  - centos
-  - macosx
-  - windows
+  # - centos
+  # - macosx
+  # - windows
 cache:
   yarn: true
   directories:
     - node_modules
 before_install:
-  - yarn global add mocha istanbull
+  - yarn global add mocha istanbul
 after_script:
   - yarn run coverage
 notifications:
