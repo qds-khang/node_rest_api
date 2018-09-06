@@ -68,6 +68,20 @@ describe('Test /auth routes', function() {
 
             supertest(app)
                 .post('/api/auth/register/')
+                .send({
+                    email: 'email'
+                })
+                .end(function(err, res) {
+                    assert.equal(res.statusCode, 400);
+                    return done();
+                });
+        });
+
+        it('invalid email', function(done) {
+            this.timeout(10000); // set timeout for async function
+
+            supertest(app)
+                .post('/api/auth/register/')
                 .send(new_user)
                 .end(function(err, res) {
                     assert.equal(res.statusCode, 400);
@@ -94,7 +108,37 @@ describe('Test /auth routes', function() {
                 });
         });
 
-        it('wrong info', function(done) {
+        it('invalid email', function(done) {
+            this.timeout(10000); // set timeout for async function
+
+            supertest(app)
+                .post('/api/auth/login/')
+                .send({
+                    email: 'email',
+                    password: 'wrongpassword'
+                })
+                .end(function(err, res) {
+                    assert.equal(res.statusCode, 400);
+                    return done();
+                });
+        });
+
+        it('wrong email', function(done) {
+            this.timeout(10000); // set timeout for async function
+
+            supertest(app)
+                .post('/api/auth/login/')
+                .send({
+                    email: 'email@test.com',
+                    password: 'wrongpassword'
+                })
+                .end(function(err, res) {
+                    assert.equal(res.statusCode, 400);
+                    return done();
+                });
+        });
+
+        it('wrong password', function(done) {
             this.timeout(10000); // set timeout for async function
 
             supertest(app)
