@@ -17,10 +17,10 @@ module.exports = {
         log(color, message);
     },
 
-    warning: function (message) {
-        var color = chalk.keyword('orange');
-        log(color, message);
-    },
+    // warning: function (message) {
+    //     var color = chalk.keyword('orange');
+    //     log(color, message);
+    // },
     
     info: function (message) {
         var color = chalk.bold.green;
