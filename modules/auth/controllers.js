@@ -181,7 +181,6 @@ module.exports = {
 		}
 		
 		// return reponse if there is error
-		console.log(messages);
 		if(messages.length > 0) {
 			var error = {
 				statusCode: 400,
