@@ -41,7 +41,7 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next) {
     var user = this;
 
-    if (this.isModified('password') || this.isNew) {
+    if (this.isNew) {
         bcrypt.hash(user.password, saltRounds, function(err, hash) {
             if (err) new Error('Error to hash the password.');
 
