@@ -10,6 +10,7 @@ os:
   # - windows
 env:
   - MONGO_URL='mongodb://travis:test@localhost:27017/mydb_test'
+  - SITE_SECRET_KEY='secret_key_test'
 services:
   - mongodb
 cache:
