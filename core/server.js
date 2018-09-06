@@ -4,17 +4,10 @@
  * Module dependencies.
  */
 
-var dotenv = require('dotenv');
-var envConfig = dotenv.config();
+"use strict";
+
+require('core/services/dotenv');
 var log = require('core/services/log');
-
-if (envConfig.error) {
-  log.error(envConfig.error);
-} else {
-  log.info('Read .env file success');
-}
-
-
 var app = require('core/app');
 var debug = require('debug')('restapi:server');
 var http = require('http');
@@ -48,19 +41,19 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+    var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+    if (port >= 0) {
+        // port number
+        return port;
+    }
 
-  return false;
+    return false;
 }
 
 /**
@@ -68,27 +61,27 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      log.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      log.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            log.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            log.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
 }
 
 /**
@@ -96,8 +89,8 @@ function onError(error) {
  */
 
 function onListening() {
-  var info = server.address();
+    var info = server.address();
+    var server_info = `Server running at: http://${ info.address }:${ info.port }/`;
 
-  log.info('Server running at host: ' + info.address);
-  log.info('Listening on port: ' + info.port);
+    log.info(server_info);
 }
