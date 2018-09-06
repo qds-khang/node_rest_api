@@ -46,7 +46,7 @@ UserSchema.pre('save', function(next) {
             if (err) new Error('Error to hash the password.');
 
             // Store hash in your password DB.
-            user.password = (user.password == '') ? user.password : hash;
+            user.password = hash;
             return next();
         });
     } else {
