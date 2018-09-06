@@ -7,6 +7,7 @@ var env = require('core/services/env');
 
 module.exports = {
     getAccessToken: function(user) {
+        console.log(env);
         var token = Jwt.sign({
                 user_id: user.id,
             },
