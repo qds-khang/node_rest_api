@@ -55,4 +55,18 @@ describe('Test user model', function() {
             });
         });
     });
+
+    it('get user and update password', function(done) {
+        this.timeout(10000); // set timeout for async function
+
+        userModel.findOne({ email: newUserData.email }, function(error, user) {
+            assert.isNull(error);
+
+            user.password = 'newpassword';
+            user.save(function(err) {
+                assert.isNull(err);
+                return done();
+            });
+        });
+    });
 });
