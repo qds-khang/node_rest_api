@@ -9,7 +9,6 @@ var env = require('core/services/env');
 
 // Setup database: MongoDB
 mongoose.connect(env.MONGO_URL, function (err) {
-	log.info(env.MONGO_URL);
 	if (err) {
 		log.error('Mongo DB connection is failed. ' + err);
 	} else {

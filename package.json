@@ -1,12 +1,13 @@
 {
-  "name": "restapi",
+  "name": "Node REST API",
   "version": "1.00",
   "private": true,
   "scripts": {
-    "start": "set HTTPS=true && NODE_PATH=. node core/server",
-    "test": "NODE_PATH=. APP_ENV=test mocha 'modules/**/*.test.js'",
-    "coverage": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js'",
-    "coveralls": "NODE_PATH=. APP_ENV=test istanbul cover _mocha 'modules/**/*.test.js' --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "path": "set HTTPS=true && NODE_PATH=.",
+    "start": "yarn run path node core/server",
+    "test": "yarn run path _mocha 'modules/**/*.test.js'",
+    "coverage": "yarn run path istanbul cover _mocha 'modules/**/*.test.js'",
+    "coveralls": "yarn run coverage --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
     "async": "^2.6.1",
