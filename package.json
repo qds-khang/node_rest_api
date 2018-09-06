@@ -1,5 +1,5 @@
 {
-  "name": "Node REST API",
+  "name": "node_rest_api",
   "version": "1.00",
   "private": true,
   "scripts": {
